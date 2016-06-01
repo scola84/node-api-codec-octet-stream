@@ -1,25 +1,25 @@
-const Decoder = require('./lib/transformer');
-const Encoder = require('./lib/transformer');
 const type = 'application/octet-stream';
 
-function decoder(options) {
-  return {
-    type,
-    create: () => new Decoder(options)
-  };
-}
+import {
+  default as Decoder,
+  default as Encoder
+} from './src/transformer';
 
-function encoder(options) {
-  return {
-    type,
-    create: () => new Encoder(options)
-  };
-}
-
-module.exports = {
-  type,
-  decoder,
-  encoder,
+export const codec = {
   Decoder,
   Encoder
 };
+
+export function decoder() {
+  return {
+    type,
+    create: () => new Decoder()
+  };
+}
+
+export function encoder() {
+  return {
+    type,
+    create: () => new Encoder()
+  };
+}
